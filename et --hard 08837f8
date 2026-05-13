@@ -1,0 +1,16 @@
+[33m046e6f4[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Guardando cambios locales
+[33m4831dc9[m Guardando cambios locales
+[33m08837f8[m Merge pull request #4 from totis023/main
+[33m4f12970[m Se implementó el módulo de reservas, incluyendo creación, validación de fechas y consulta de vehículos disponibles.
+[33mf282926[m Merge pull request #3 from Esteban-Osores06/main
+[33mfa03534[m parte de clientes
+[33mb31d585[m Merge pull request #2 from santiagorub/main
+[33m4562e52[m Merge branch 'main' of https://github.com/santiagorub/TP2-Autos
+[33m94ff162[m se definió el método exportarVehiculos() en nVehiculo.cs
+[33m3ec4442[m Resolver conflicto
+[33ma61ffc3[m Merge pull request #1 from santiagorub/main
+[33m83629cf[m Se definio el método listarVehiculos() a la clase nVehiculos.cs
+[33m8e0cc8b[m Se crearon las clases Vehículo.cs y nVehículo.cs con ABM de vehículos
+[33me320751[m prueba
+[33m0400577[m Inicio proyecto TP2 autos
+[33m60764d0[m Initial commit
