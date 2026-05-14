@@ -40,7 +40,7 @@ namespace alquiler_de_autos
                         MenuReservas(gestionReservas, gestion, gestionVehiculos);
                         break;
                     case "4":
-                        gestionReportes.MenuReportes(); // Esto llamará al menú interno de reportes que ya tenías
+                        MenuReportes(gestionReportes, gestionReservas);
                         break;
                     case "0":
                         salir = true;
@@ -139,7 +139,6 @@ namespace alquiler_de_autos
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        // Por ahora lo dejamos marcado para conectar después
                         gestionReservas.crearReserva(gestion, gestionVehiculos);
                         break;
                     case "2":
@@ -155,5 +154,56 @@ namespace alquiler_de_autos
                 if (!volver) { Console.WriteLine("\nPresione una tecla..."); Console.ReadKey(); }
             }
         }
+
+        static void MenuReportes(nReportes gestionReportes, nReserva gestionarReservas)
+        {
+            string opcion;
+            var reservas = gestionarReservas.GetReservas();
+
+            do
+            {
+                Console.Clear();
+
+                Console.WriteLine("=== REPORTES ===");
+                Console.WriteLine("1- Vehiculos mas usados");
+                Console.WriteLine("2- Clientes que mas alquilan");
+                Console.WriteLine("3- Exportar reporte");
+                Console.WriteLine("0- Volver");
+                Console.Write("\nSeleccione una opción: ");
+
+                opcion = Console.ReadLine();
+
+                switch (opcion)
+                {
+                    case "1":
+                        gestionReportes.VehiculosMasUsados(reservas);
+                        break;
+
+                    case "2":
+                        gestionReportes.ClientesQueMasAlquilan(reservas);
+                        break;
+
+                    case "3":
+                        gestionReportes.ExportarReporte(reservas);
+                        break;
+                    case "4":
+                        break;
+                        
+                    default:
+                        Console.WriteLine("Opción no válida.");
+                        break;
+                }
+                
+                if (opcion != "0")
+                {
+                    Console.WriteLine("\nPresione una tecla para continuar...");
+                    Console.ReadKey();
+                }
+
+
+            } while (opcion != "0");
+        }
+
+
     }
 }
