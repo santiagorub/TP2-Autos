@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace TP2Autos.Controllers
+namespace alquiler_de_autos.controllers
 {
     public class nReportes
     {

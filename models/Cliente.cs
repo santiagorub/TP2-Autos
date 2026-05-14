@@ -1,6 +1,6 @@
 using System;
 
-namespace TP2Autos.Models
+namespace alquiler_de_autos.models
 {
     public class Cliente
     {

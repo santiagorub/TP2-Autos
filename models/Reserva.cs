@@ -1,7 +1,9 @@
 using System;
+
+
 namespace alquiler_de_autos.models
 {
-    class Reserva
+    public class Reserva
     {
         public DateTime fechaInicio {get; set;}
         public DateTime fechaFin {get; set;}

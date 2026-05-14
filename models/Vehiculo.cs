@@ -1,6 +1,6 @@
 namespace alquiler_de_autos.models
 {
-    class Vehiculo
+    public class Vehiculo
     {
         public string patente {get; set;}
         public string marca {get; set;}
@@ -15,6 +15,16 @@ namespace alquiler_de_autos.models
             this.modelo = modelo;
             this.anio = anio;
             disponible = true;
+        }
+         public override string ToString()
+        {
+            return
+                "Patente: " + patente +
+                "\nMarca: " + marca +
+                "\nModelo: " + modelo +
+                "\nAño: " + anio +
+                "\nDisponible: " + 
+                (disponible ? "Si" : "No");
         }
     }
 }

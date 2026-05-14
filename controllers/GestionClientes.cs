@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.IO;   // Para StreamWriter
 using System.Linq;
-using TP2Autos.Models;
+using alquiler_de_autos.models;
 
-namespace TP2Autos
+namespace alquiler_de_autos.controllers
 {
     public class GestionClientes
     {
@@ -61,5 +61,11 @@ namespace TP2Autos
                 Console.WriteLine("Error al exportar: " + ex.Message);
             }
         }
+
+        public Cliente BuscarPorDNI(string dni)
+        {
+            return clientes.Find(c => c.DNI == dni);
+        }
+        
     }
 }

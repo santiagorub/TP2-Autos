@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace alquiler_de_autos.controllers
 {
-    class nReserva
+    public class nReserva
     {
-        public List<Reserva> listaReservas = new List<Reserva>();
+        private List<Reserva> listaReservas { get; set;} = new List<Reserva>();
 
         public void listarReservas()
         {
@@ -36,9 +36,30 @@ namespace alquiler_de_autos.controllers
             }
             return true;
         }
-
-        public void crearReserva(Cliente cliente, Vehiculo vehiculo)
+            //hago un cambio aca poruqe program no tiene los objetos vehiculo y cliente, solo tiene las listas.
+        public void crearReserva(GestionClientes gestion, nVehiculo gestionVehiculos)
         {
+            Console.Write ("Ingrese DNI del cliente: ");
+            string dni = Console.ReadLine();
+            Cliente cliente = gestion.BuscarPorDNI(dni);
+
+            if (cliente == null)
+            {
+                Console.WriteLine("No se encontró un cliente con ese DNI.");
+                return;
+            }
+
+            Console.Write("Ingrese patente del vehículo: ");
+            string patente = Console.ReadLine();
+            Vehiculo vehiculo = gestionVehiculos.buscarVehiculo(patente);
+
+            if (vehiculo == null)
+            {
+                Console.WriteLine("No se encontró un vehículo con esa patente.");
+                return;
+            }
+    
+            
             Console.Write("Fecha desde: ");
             DateTime desde = DateTime.Parse(Console.ReadLine());
 
@@ -62,6 +83,7 @@ namespace alquiler_de_autos.controllers
 
             Console.WriteLine("Reserva creada."); 
         }
+        
 
         public void vehiculosDisponibles(List<Vehiculo> listaVehiculos)
         {

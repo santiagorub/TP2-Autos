@@ -1,33 +1,81 @@
 ﻿using System;
-Console.WriteLine("Hello, World!");
+using alquiler_de_autos.controllers;
+using alquiler_de_autos.models;
 
-namespace TP2Autos
+
+namespace alquiler_de_autos
 {
     class Program
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Hello, World!");
             GestionClientes gestion = new GestionClientes();
+            nVehiculo gestionVehiculos = new nVehiculo();
+            nReserva gestionReservas = new nReserva();
+            nReportes gestionReportes = new nReportes();
+
             bool salir = false;
 
             while (!salir)
             {
-                Console.WriteLine("\n--- SISTEMA DE GESTIÓN DE CLIENTES ---");
-                Console.WriteLine("1. Dar de Alta Cliente");
-                Console.WriteLine("2. Listar Clientes");
-                Console.WriteLine("3. Exportar a CSV");
-                Console.WriteLine("4. Salir");
-                Console.Write("Seleccione una opción: ");
+                Console.Clear();
+                Console.WriteLine("=== SISTEMA DE ALQUILER DE AUTOS ===");
+                Console.WriteLine("1. Gestión de Clientes");
+                Console.WriteLine("2. Gestión de Vehículos");
+                Console.WriteLine("3. Gestión de Reservas");
+                Console.WriteLine("4. Reportes");
+                Console.WriteLine("0. Salir");
+                Console.Write("\nSeleccione una opción: ");
 
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        Console.Write("DNI: "); string DNI = Console.ReadLine();
-                        Console.Write("Nombre: "); string Nombre = Console.ReadLine();
-                        Console.Write("Apellido: "); string Apellido = Console.ReadLine();
-                        Console.Write("Email: "); string Email = Console.ReadLine();
+                        MenuClientes(gestion);
+                        break;
+                    case "2":
+                        MenuVehiculos(gestionVehiculos);
+                        break;
+                    case "3":
+                        MenuReservas(gestionReservas, gestion, gestionVehiculos);
+                        break;
+                    case "4":
+                        gestionReportes.MenuReportes(); // Esto llamará al menú interno de reportes que ya tenías
+                        break;
+                    case "0":
+                        salir = true;
+                        break;
+                    default:
+                        Console.WriteLine("Opción no válida.");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+        }
+                
 
-                        if(gestion.AgregarCliente(DNI, Nombre, Apellido, Email)) 
+        static void MenuClientes(GestionClientes gestion)
+        {
+            bool volver = false;
+            while (!volver)
+            {
+                Console.Clear();
+                Console.WriteLine("=== GESTIÓN DE CLIENTES ===");
+                Console.WriteLine("1. Agregar Cliente");
+                Console.WriteLine("2. Listar Clientes");
+                Console.WriteLine("3. Exportar a Archivo");
+                Console.WriteLine("4. Volver al Menú Principal");
+                Console.Write("\nSeleccione una opción: ");
+
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                    Console.Write("DNI: "); string DNI = Console.ReadLine();
+                    Console.Write("Nombre: "); string Nombre = Console.ReadLine();
+                    Console.Write("Apellido: "); string Apellido = Console.ReadLine();
+                    Console.Write("Email: "); string Email = Console.ReadLine();
+
+                        if (gestion.AgregarCliente(DNI, Nombre, Apellido, Email))
                             Console.WriteLine("Cliente agregado correctamente.");
                         break;
                     case "2":
@@ -37,12 +85,74 @@ namespace TP2Autos
                         gestion.ExportarAArchivo();
                         break;
                     case "4":
-                        salir = true;
+                        volver = true;
                         break;
                     default:
-                        Console.WriteLine("Opción no válida.");
+                        Console.WriteLine("Opcion no valda.");
                         break;
                 }
+                if (!volver) { Console.WriteLine("\nPresione cualquier tecla para continuar..."); Console.ReadKey(); }
+            }
+        }
+
+        static void MenuVehiculos(nVehiculo gestionVehiculos)
+        {
+            bool volver = false;
+            while (!volver)
+            {
+                Console.Clear();
+                Console.WriteLine("=== GESTIÓN DE VEHÍCULOS ===");
+                Console.WriteLine("1. Alta de Vehículo");
+                Console.WriteLine("2. Baja de Vehículo");
+                Console.WriteLine("3. Modificar Vehículo");
+                Console.WriteLine("4. Listar Vehículos");
+                Console.WriteLine("5. Exportar Vehículos");
+                Console.WriteLine("6. Volver");
+                Console.Write("\nSeleccione una opción: ");
+
+                switch (Console.ReadLine())
+                {
+                    case "1": gestionVehiculos.altaVehiculo(); break;
+                    case "2": gestionVehiculos.bajaVehiculo(); break;
+                    case "3": gestionVehiculos.modificarVehiculo(); break;
+                    case "4": gestionVehiculos.listarVehiculos(); break;
+                    case "5": gestionVehiculos.exportarVehiculos(); break;
+                    case "6": volver = true; break;
+                }
+                if (!volver) { Console.WriteLine("\nPresione una tecla..."); Console.ReadKey(); }
+            }
+        }
+
+        static void MenuReservas(nReserva gestionReservas, GestionClientes gestion, nVehiculo gestionVehiculos)
+        {
+            bool volver = false;
+            while (!volver)
+            {
+                Console.Clear();
+                Console.WriteLine("=== GESTIÓN DE RESERVAS ===");
+                Console.WriteLine("1. Crear Reserva");
+                Console.WriteLine("2. Listar Reservas");
+                Console.WriteLine("3. Ver Disponibilidad por fecha");
+                Console.WriteLine("4. Volver");
+                Console.Write("\nSeleccione una opción: ");
+
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        // Por ahora lo dejamos marcado para conectar después
+                        gestionReservas.crearReserva(gestion, gestionVehiculos);
+                        break;
+                    case "2":
+                        gestionReservas.listarReservas();
+                        break;
+                    case "3":
+                        gestionReservas.vehiculosDisponibles(gestionVehiculos.listaVehiculos);
+                        break;
+                    case "4":
+                        volver = true;
+                        break;
+                }
+                if (!volver) { Console.WriteLine("\nPresione una tecla..."); Console.ReadKey(); }
             }
         }
     }

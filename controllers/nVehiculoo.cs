@@ -5,7 +5,7 @@ using System.IO;
 
 namespace alquiler_de_autos.controllers
 {
-    class nVehiculo
+    public class nVehiculo
     {
         public List<Vehiculo> listaVehiculos = new List<Vehiculo>();
 
@@ -40,7 +40,7 @@ namespace alquiler_de_autos.controllers
 
             Vehiculo v = new Vehiculo(patente, marca, modelo, anio);
 
-            listarVehiculos.add(nuevo);
+            listaVehiculos.Add(v);
 
             Console.WriteLine("El vehículo se ha agregado con exito.");
         }
@@ -64,7 +64,7 @@ namespace alquiler_de_autos.controllers
                 return;
             }
 
-            listarVehiculos.remove(vehiculoEncontrado);
+            listaVehiculos.Remove(vehiculoEncontrado);
 
             Console.WriteLine("El vehículo se ha dado de baja con éxito.");
         }
@@ -133,7 +133,7 @@ namespace alquiler_de_autos.controllers
 
         public void exportarVehiculos()
         {
-            if (listarVehiculos.Count == 0)
+            if (listaVehiculos.Count == 0)
             {
                 Console.Write("No hay vehículos cargados para exportar.");
                 return;
@@ -143,10 +143,10 @@ namespace alquiler_de_autos.controllers
 
             archivo.WriteLine("Lista de vehículos:");
             
-            foreach (Vehiculo v in listarVehiculos)
+            foreach (Vehiculo v in listaVehiculos)
             {
                 archivo.WriteLine("------------------------------");
-                archivo.WriteLine(v.toString());
+                archivo.WriteLine(v.ToString());
             }
 
             archivo.Close();
@@ -201,15 +201,6 @@ namespace alquiler_de_autos.controllers
             return null;
         }
 
-        public override string toString()
-        {
-            return
-                "Patente: " + patente +
-                "\nMarca: " + marca +
-                "\nModelo: " + modelo +
-                "\nAño: " + anio +
-                "\nDisponible: " + 
-                (disponible ? "Si" : "No");
-        }
+       
     }
 }
