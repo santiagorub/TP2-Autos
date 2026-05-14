@@ -11,6 +11,8 @@ namespace alquiler_de_autos.controllers
 
         public void altaVehiculo()
         {
+            Console.Clear();
+
             Console.Write("Patente: ");
             string patente = Console.ReadLine();
             Console.Write("Marca: ");
@@ -18,7 +20,14 @@ namespace alquiler_de_autos.controllers
             Console.Write("Modelo: ");
             string modelo = Console.ReadLine();
             Console.Write("Año: ");
-            int anio = int.Parse(Console.ReadLine());
+            string textoAnio = Console.ReadLine();
+            int anio;
+
+            if (!int.TryParse(textoAnio, out anio))
+            {
+                Console.WriteLine("El año ingresado no es valido, por favor ingrese otro.");
+                return;
+            }
 
             if (!validarCampos(patente, marca, modelo))
             {
@@ -47,6 +56,8 @@ namespace alquiler_de_autos.controllers
 
         public void bajaVehiculo()
         {
+            Console.Clear();
+
             Console.Write("Patente del vehículo a dar de baja: ");
             string patente = Console.ReadLine();
 
@@ -71,8 +82,17 @@ namespace alquiler_de_autos.controllers
 
         public void modificarVehiculo()
         {
+            Console.Clear();
+
             Console.Write("Ingrese la patente del vehículo: ");
             string patente = Console.ReadLine();
+
+            //validar que el campo de la patente no este vacio
+            if (string.IsNullOrWhiteSpace(patente))
+            {
+                Console.WriteLine("Debe ingresar una patente, el campo no puede estar vacío");
+                return;
+            }
 
             Vehiculo vehiculoEncontrado = buscarVehiculo(patente);
 
@@ -94,7 +114,14 @@ namespace alquiler_de_autos.controllers
             Console.Write("Nuevo modelo: ");
             string nuevoModelo = Console.ReadLine();
             Console.Write("Nuevo año: ");
-            int nuevoAnio = int.Parse(Console.ReadLine());
+            string textoNuevoAnio = Console.ReadLine();
+            int nuevoAnio;
+
+            if (!int.TryParse(textoNuevoAnio, out nuevoAnio))
+            {
+                Console.WriteLine("El año ingresado no es valido, por favor ingrese otro.");
+                return;
+            }
 
             if (!validarCampos(vehiculoEncontrado.patente, nuevaMarca, nuevoModelo))
             {
@@ -118,6 +145,8 @@ namespace alquiler_de_autos.controllers
 
         public void listarVehiculos()
         {
+            Console.Clear();
+
             if (listaVehiculos.Count == 0)
             {
                 Console.WriteLine("No hay vehículos registrados.");
@@ -157,7 +186,7 @@ namespace alquiler_de_autos.controllers
         //este metodo verifica que los campos no esten vacios
         public bool validarCampos(string patente, string marca, string modelo)
         {
-            if(patente == "" || marca == "" || modelo == "")
+            if(string.IsNullOrWhiteSpace(patente) || string.IsNullOrWhiteSpace(marca) || string.IsNullOrWhiteSpace(modelo))
             {
                 return false;
             }
