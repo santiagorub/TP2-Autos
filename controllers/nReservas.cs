@@ -9,6 +9,10 @@ namespace alquiler_de_autos.controllers
     {
         private List<Reserva> listaReservas { get; set;} = new List<Reserva>();
 
+        public List<Reserva> GetReservas()
+        {
+            return listaReservas;
+        }
         public void listarReservas()
         {
             if(listaReservas.Count == 0)
