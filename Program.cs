@@ -143,12 +143,9 @@ namespace alquiler_de_autos
                 switch (Console.ReadLine())
                 {
                     case "1":
-<<<<<<< HEAD
                         Console.Clear();
                         Console.WriteLine("=== CREAR RESERVA ===");
                         // Por ahora lo dejamos marcado para conectar después
-=======
->>>>>>> c3282dab166629c7f8414b74f251cac656c5a950
                         gestionReservas.crearReserva(gestion, gestionVehiculos);
                         break;
                     case "2":
