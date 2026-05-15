@@ -151,13 +151,16 @@ namespace alquiler_de_autos.controllers
             if (listaVehiculos.Count == 0)
             {
                 Console.WriteLine("No hay vehículos registrados.");
-                return;
+                Console.WriteLine("\nPresione una tecla para volver...");
+                Console.ReadKey();
             }
 
             Console.WriteLine("      --Lista de vehículos--      ");
             foreach (Vehiculo v in listaVehiculos)
             {
                 Console.WriteLine(v);
+                Console.WriteLine("\nPresione una tecla para volver...");
+                Console.ReadKey();
             }
         }
 

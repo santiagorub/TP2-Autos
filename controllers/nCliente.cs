@@ -52,6 +52,8 @@ namespace alquiler_de_autos.controllers
             Console.Clear();
             if (clientes.Count == 0) Console.WriteLine("No hay clientes registrados.");
             else clientes.ForEach(c => Console.WriteLine(c.ToString()));
+            Console.WriteLine("\nPresione una tecla para volver...");
+            Console.ReadKey();
         }
 
         // para exportar a un archivo de texto
@@ -90,7 +92,7 @@ namespace alquiler_de_autos.controllers
         public static void Menu()
         {
             Console.Clear();
-            string[] opciones = {"Agregar","Listar","Exportar","Salir"};
+            string[] opciones = {"Agregar","Listar","Exportar","Volver"};
             int seleccion = Herramienta.MenuSeleccionar(opciones,1,"Gestión de Clientes");
             switch (seleccion)
             {

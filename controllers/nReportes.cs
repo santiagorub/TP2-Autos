@@ -13,14 +13,16 @@ namespace alquiler_de_autos.controllers
         
         public static void VehiculosMasUsados()
         {
-            Console.WriteLine("Vehiculos mas usados");
+            Console.Clear();
+            Console.WriteLine("     --Vehiculos mas usados--     ");
             if (reservas.Count == 0)
             {
                 Console.WriteLine("No hay reservas registradas.");
-                return;
+                Console.WriteLine("\nPresione una tecla para volver...");
+                Console.ReadKey();
             }
         
-        var consulta = reservas
+            var consulta = reservas
                 .GroupBy(r => r.vehiculo.patente)
                 .Select(grupo => new { 
                     Patente = grupo.Key, 
@@ -32,16 +34,20 @@ namespace alquiler_de_autos.controllers
             foreach (var item in consulta)
             {
                 Console.WriteLine($"Patente: {item.Patente}, Cantidad de reservas: {item.Cant}, Marca: {item.Auto.marca}, Modelo: {item.Auto.modelo}");
+                Console.WriteLine("\nPresione una tecla para volver...");
+                Console.ReadKey();
             }
         }
 
         public static void ClientesQueMasAlquilan()
         {
-            Console.WriteLine("Clientes Frecuentes");
+            Console.Clear();
+            Console.WriteLine("     --Clientes Frecuentes--      ");
             if (reservas.Count == 0)
             {
                 Console.WriteLine("No hay reservas registradas.");
-                return;
+                Console.WriteLine("\nPresione una tecla para volver...");
+                Console.ReadKey();
             }
 
             var consulta = reservas
@@ -56,6 +62,8 @@ namespace alquiler_de_autos.controllers
             foreach (var item in consulta)
             {
                 Console.WriteLine($"DNI: {item.DNI}, Cantidad de reservas: {item.Cant}, Nombre: {item.Nombre}");
+                Console.WriteLine("\nPresione una tecla para volver...");
+                Console.ReadKey();
             }
         }
 

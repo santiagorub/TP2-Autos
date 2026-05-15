@@ -18,6 +18,7 @@ namespace alquiler_de_autos.controllers
         }
         public static void listarReservas()
         {
+            Console.Clear();
             if(listaReservas.Count == 0)
             {
                 Console.WriteLine("No hay reservas registradas.");
@@ -28,6 +29,9 @@ namespace alquiler_de_autos.controllers
             {
                 Console.WriteLine(r);
             }
+
+            Console.WriteLine("\nPresione una tecla para volver...");
+            Console.ReadKey();
         }
 
         public static bool validarFechas(Vehiculo vehiculo, DateTime desde, DateTime hasta)
@@ -47,6 +51,7 @@ namespace alquiler_de_autos.controllers
             //hago un cambio aca poruqe program no tiene los objetos vehiculo y cliente, solo tiene las listas.
         public static void crearReserva()
         {
+            Console.Clear();
             Console.Write ("Ingrese DNI del cliente: ");
             string dni = Console.ReadLine();
             Cliente cliente = nCliente.BuscarPorDNI(dni);
@@ -102,6 +107,8 @@ namespace alquiler_de_autos.controllers
             while(!DateTime.TryParse(Console.ReadLine(), out fecha))
             {
                 Console.WriteLine("Fecha inválida. Intente nuevamente.");
+                Console.WriteLine("\nPresione una tecla para volver...");
+                Console.ReadKey();
                 return;
             }
 
@@ -115,11 +122,15 @@ namespace alquiler_de_autos.controllers
                     {
                         ocupado = true;
                     }
+                    Console.WriteLine("\nPresione una tecla para volver...");
+                    Console.ReadKey();
                 }
 
                 if (!ocupado)
                 {
                     Console.WriteLine(v);
+                    Console.WriteLine("\nPresione una tecla para volver...");
+                    Console.ReadKey();
                 }
             }
         }
