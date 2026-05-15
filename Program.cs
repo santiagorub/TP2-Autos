@@ -232,13 +232,8 @@ namespace alquiler_de_autos
                 }
 
 
-<<<<<<< HEAD
             } while (opcion != "0");
         }*/
-=======
-            } while (opcion != "4");
-        }
->>>>>>> 4079c69855401219a58e64bc79cc0bb30215ae87
 
 
     }
